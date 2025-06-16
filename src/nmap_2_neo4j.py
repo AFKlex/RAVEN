@@ -19,7 +19,6 @@ def create_port(port_id, port_attributes) :
  
     new_node = Node(unique_id=port_id, node_type="Port",properties=port_attributes)
     new_node.create_in_database()
-    print(f"Created: {port_id}")
 
 def create_connection_between_port_host(host_id, port_id):
 
@@ -28,7 +27,12 @@ def create_connection_between_port_host(host_id, port_id):
 
 
 def create_service(service_id,attributes):
-    pass 
+    new_Service = Node(unique_id=service_id,node_type="Service", properties=attributes)
+    new_Service.create_in_database()
+
+def create_connection_betwen_port_service(port_id, service_id):
+    new_Edge = Edge(port_id,service_id, "RUNS_SERVICE")
+    new_Edge.create_in_database()
 
 # ---- Main Import ----
 
@@ -56,7 +60,6 @@ def import_nmap_xml(file_path):
     for host in root.findall("host"):
         status = host.find("status").attrib
         address = host.find("address").attrib
-        #hostnames= host.find("hostnames").attrib
         port_list = host.find("ports").findall("port")
         
         host_ip =address["addr"]
@@ -67,7 +70,6 @@ def import_nmap_xml(file_path):
             port_state = port.find("state").attrib
             service_info = port.find("service").attrib
             port_info = port.attrib
-            print(port_state)
 
             ## merga dicts: 
             port_info  = {**port_state, **port_info}
@@ -84,6 +86,8 @@ def import_nmap_xml(file_path):
             create_port(port_id, port_info) 
             create_connection_between_port_host(host_ip, port_id)
 
+            create_service(service_id, service_info) 
+            create_connection_betwen_port_service(port_id,service_id)
 
         
 

@@ -58,13 +58,28 @@ def import_nmap_xml(file_path):
     print("--------------------")
 
     for host in root.findall("host"):
-        status = host.find("status").attrib
+        
+        host_infos = host.find("status").attrib
         address = host.find("address").attrib
         port_list = host.find("ports").findall("port")
         
         host_ip =address["addr"]
+
         
-        create_host(host_ip,status)
+        hostscript_info = host.find('hostscript').findall('script')
+        #print(hostscript_info)
+        
+        for entry in hostscript_info: 
+            host_infos[entry.attrib["id"]] = entry.attrib["output"]
+
+        print(host_infos)
+        
+
+        
+
+    
+        create_host(host_ip,host_infos)
+
 
         for port in port_list: 
             port_state = port.find("state").attrib

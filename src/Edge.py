@@ -22,7 +22,7 @@ class Edge:
         Match (b) where b.refID = "{self.unique_id_b}"
         Merge (a) - [:{self.connection_type}] -> (b)
         """
-        print(query)
+        #print(query)
 
         driver.execute_query(query) 
 

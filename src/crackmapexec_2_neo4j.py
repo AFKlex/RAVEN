@@ -13,7 +13,6 @@ def import_crackmapexec(file_path):
     for line in lines: 
         parts = line.split()
         
-
         cred = match_cred(line)
         #print(cred)
 
@@ -22,8 +21,6 @@ def import_crackmapexec(file_path):
             create_domain(cred['Domain'],{"Name": cred['Domain']})
             create_user(refID=userID,props=cred)
             create_edge_domain_user(cred['Domain'],userID)
-
-            
             break
             
 

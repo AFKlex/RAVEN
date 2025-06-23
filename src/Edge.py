@@ -29,4 +29,20 @@ class Edge:
         driver.close()
         
 
+def create_edge_domain_user(domain, user):
+    new_edge = Edge(domain, user, "HAS_USER")
+    new_edge.create_in_database()
 
+def create_edge_user_share(user, share, permission): 
+    new_edge = Edge(user, share, f"{(permission).upper()}_ACCESS")
+    new_edge.create_in_database()
+
+def create_edge_host_port(host, port):
+    new_edge = Edge(host, port, "HAS_PORT")
+    new_edge.create_in_database()
+
+def create_edge_port_share(port,share):
+    new_edge = Edge(port, share, "EXPOSES_SHARE")
+    new_edge.create_in_database()
+
+        

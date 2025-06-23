@@ -26,3 +26,54 @@ class Node:
         driver.execute_query(query, properties=self.properties)
         
         driver.close()
+
+
+
+
+def create_host(refID, props= {}):
+    new_node = Node(unique_id=refID, node_type="Host", properties=props)
+    new_node.create_in_database()
+
+def create_domain(refID, props= {}):
+    new_node = Node(unique_id=refID, node_type="Domain", properties=props)
+    new_node.create_in_database()
+
+def create_port(refID, props= {}):
+    new_node = Node(unique_id=refID, node_type="Port", properties=props)
+    new_node.create_in_database()
+
+def create_service(refID, props= {}):
+    new_node = Node(unique_id=refID, node_type="Service", properties=props)
+    new_node.create_in_database()
+
+def create_share(refID, props= {}):
+    new_node = Node(unique_id=refID, node_type="Share", properties=props)
+    new_node.create_in_database()
+
+def create_file(refID, props= {}):
+    new_node = Node(unique_id=refID, node_type="File", properties=props)
+    new_node.create_in_database()
+
+def create_folder(refID, props= {}):
+    new_node = Node(unique_id=refID, node_type="Folder", properties=props)
+    new_node.create_in_database()
+
+def create_vulnerability(refID, props= {}):
+    new_node = Node(unique_id=refID, node_type="Vulnerability", properties=props)
+    new_node.create_in_database()
+
+def create_exploit(refID, props= {}):
+    new_node = Node(unique_id=refID, node_type="Exploit", properties=props)
+    new_node.create_in_database()
+
+def create_user(refID, props= {}):
+    new_node = Node(unique_id=refID, node_type="User", properties=props)
+    new_node.create_in_database()
+
+def create_group(refID, props= {}):
+    new_node = Node(unique_id=refID, node_type="Group", properties=props)
+    new_node.create_in_database()
+
+def create_component(refID, props= {}):
+    new_node = Node(unique_id=refID, node_type="Component", properties=props)
+    new_node.create_in_database()

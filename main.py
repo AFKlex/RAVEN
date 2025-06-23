@@ -1,4 +1,5 @@
 
+from src.crackmapexec_2_neo4j import import_crackmapexec
 from src.nmap_2_neo4j import * 
 from src.Edge import *
 from src.Node import * 
@@ -19,6 +20,13 @@ def load_nmap(file_path):
 
     import_nmap_xml(file_path)
     
+@raven_shell.command()
+@click.option('--file_path', default="./data/crackmapexec", help="Provide the File Path to the XML Scan results of NMAP.")
+def load_crackmapexec(file_path):
+    """
+    filePath: provide the filePath to the Scan result of nmap. 
+    """
+    import_crackmapexec(file_path)
 
 
 if __name__ == '__main__':
